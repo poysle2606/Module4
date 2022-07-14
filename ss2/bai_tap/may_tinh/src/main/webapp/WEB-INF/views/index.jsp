@@ -16,10 +16,10 @@
     <table>
         <tr>
             <td>
-                <input type="number" name="number1" value="${number1}">
+                <input type="number" required name="number1" value="${number1}">
             </td>
             <td>
-                <input type="number" name="number2" value="${number2}">
+                <input type="number" required name="number2" value="${number2}">
             </td>
         </tr>
         <tr>
