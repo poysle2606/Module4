@@ -21,7 +21,7 @@ public class CalculatorService implements ICalculatorService {
                     return number1 + " " + operand + " " + number2 + "=" + (number1 / number2);
                 }
             default:
-                return "null";
+                return "Unable to perform calculation";
         }
     }
 }

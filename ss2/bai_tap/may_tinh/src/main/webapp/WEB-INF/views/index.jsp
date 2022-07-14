@@ -12,33 +12,33 @@
 </head>
 <body>
 <h1>Calculator</h1>
-<form action="" method="post">
+<form action="/calculator" method="post">
     <table>
         <tr>
             <td>
-                <input type="number" name="number1">
+                <input type="number" name="number1" value="${number1}">
             </td>
             <td>
-                <input type="number" name="number2">
+                <input type="number" name="number2" value="${number2}">
             </td>
         </tr>
         <tr>
             <td>
-                <button type="submit" name="+">Addition(+)</button>
+                <button name="operand" value="+">Addition(+)</button>
             </td>
             <td>
-                <button type="submit" name="-">Subtraction(-)</button>
+                <button name="operand" value="-">Subtraction(-)</button>
             </td>
             <td>
-                <button type="submit" name="*">Multiplication(*)</button>
+                <button name="operand" value="*">Multiplication(*)</button>
             </td>
             <td>
-                <button type="submit" name="/">Division(/)</button>
+                <button name="operand" value="/">Division(/)</button>
             </td>
         </tr>
     </table>
 </form>
 
-<h3>Result:</h3>
+<h3>Result:${result}</h3>
 </body>
 </html>
