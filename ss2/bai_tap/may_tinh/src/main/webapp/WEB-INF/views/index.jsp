@@ -14,11 +14,11 @@
 <h1>Calculator</h1>
 <form action="/calculator" method="post">
     <table>
-        <tr>
-            <td>
+        <tr >
+            <td colspan="2">
                 <input type="number" required name="number1" value="${number1}">
             </td>
-            <td>
+            <td colspan="2">
                 <input type="number" required name="number2" value="${number2}">
             </td>
         </tr>

@@ -9,19 +9,19 @@ public class CalculatorService implements ICalculatorService {
     public String calculator(double number1, double number2, String operand) {
         switch (operand){
             case "+" :
-                return number1 + " " + operand + " " + number2 + "=" + (number1 + number2);
+                return number1 + " " + operand + " " +  number2 + "=" + (number1 + number2);
             case "-":
-                return number1 + " " + operand + " " + number2 + "=" + (number1 - number2);
+                return number1 + " " + operand + " " + number2 + "=" +(number1 - number2);
             case "*":
                 return number1 + " " + operand + " " + number2 + "=" + (number1 * number2);
             case "/":
                 if (number2 == 0) {
-                    return "Number 2 > 0";
+                    throw new RuntimeException("number 2 > 0");
                 } else {
-                    return number1 + " " + operand + " " + number2 + "=" + (number1 / number2);
+                    return number1 + " " + operand + " " + number2 + "=" +   (number1 / number2);
                 }
             default:
-                return "Unable to perform calculation";
+              throw new RuntimeException("Unable to perform calculation");
         }
     }
 }
