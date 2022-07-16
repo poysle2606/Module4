@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MedicalService implements IMedicalService{
+public class MedicalService implements IMedicalService {
 
     @Autowired
     IMedicalRepository iMedicalRepository;
+
     @Override
     public Integer[] getYearOfBirth() {
         return iMedicalRepository.getYearOfBirth();

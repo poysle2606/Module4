@@ -31,39 +31,39 @@ public class MedicalRepository implements IMedicalRepository {
 
     @Override
     public Integer[] getDayStart() {
-        Integer[] dayStart = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-                16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+        Integer[] dayStart = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+                16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
         return dayStart;
     }
 
     @Override
     public Integer[] getMonthStart() {
-        Integer[] monthStart = {1,2,3,4,5,6,7,8,9,10,11,12};
+        Integer[] monthStart = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         return monthStart;
     }
 
     @Override
     public Integer[] getYearStart() {
-        Integer[] yearStart = {2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012};
+        Integer[] yearStart = {2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012};
         return yearStart;
     }
 
     @Override
     public Integer[] getDayEnd() {
-        Integer[] dayEnd = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-                16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+        Integer[] dayEnd = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+                16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
         return dayEnd;
     }
 
     @Override
     public Integer[] getMonthEnd() {
-        Integer[] monthEnd = {1,2,3,4,5,6,7,8,9,10,11,12};
+        Integer[] monthEnd = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         return monthEnd;
     }
 
     @Override
     public Integer[] getYearEnd() {
-        Integer[] yearEnd = {2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012};
+        Integer[] yearEnd = {2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012};
         return yearEnd;
     }
 }
