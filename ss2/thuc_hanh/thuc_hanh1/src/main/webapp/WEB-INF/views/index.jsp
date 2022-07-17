@@ -7,14 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>$Title$</title>
-  </head>
-  <body>
-  <h3 style="color:red">${message}</h3>
+</head>
+<body>
+<h3 style="color:red">${message}</h3>
 
-  <form action="validate" method="post">
+<form action="validate" method="post">
     <input type="text" name="email"><br>
     <input type="submit" value="Validate">
-  </body>
+</form>
+</body>
 </html>
