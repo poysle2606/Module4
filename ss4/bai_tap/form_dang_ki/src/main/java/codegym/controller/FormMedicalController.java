@@ -33,17 +33,18 @@ public class FormMedicalController {
         return modelAndView;
     }
 
-//    @PostMapping("/result")
-//    public ModelAndView save(@ModelAttribute("medical") Medical medical) {
-//        ModelAndView modelAndView = new ModelAndView("result");
-//        return modelAndView;
-//    }
-
     @PostMapping("/result")
-    public String create(@ModelAttribute("medical") Medical medical){
+    public ModelAndView save(@ModelAttribute("medical") Medical medical) {
         iMedicalService.addMedical(medical);
-        return "result";
+        ModelAndView modelAndView = new ModelAndView("result");
+        return modelAndView;
     }
+
+//    @PostMapping("/result")
+//    public String create(@ModelAttribute("medical") Medical medical){
+//        iMedicalService.addMedical(medical);
+//        return "result";
+//    }
 
     @GetMapping("/edit")
     public ModelAndView editFormMedical(@RequestParam("idCard") Integer idCard){

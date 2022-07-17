@@ -81,15 +81,16 @@ public class MedicalRepository implements IMedicalRepository {
 
     @Override
     public Medical findIdCard(Integer idCard) {
-        Medical medical1 = null;
-      Integer id = medical1.getIdCard();
-        if (idCard.equals(id)){
-            medical1 = new Medical(medical1.getName(),medical1.getYearOfBirth(),medical1.getGender(),
-                    medical1.getNational(), medical1.getIdCard(), medical1.getMove(), medical1.getIdCar(),
-                    medical1.getNumberChair(), medical1.getDayStart(), medical1.getMonthStart(), medical1.getYearStart(),
-                    medical1.getDayEnd(), medical1.getMonthEnd(), medical1.getYearEnd(), medical1.getInformation14Day());
+ Medical medical2 = null;
+        for (Medical e : medical1) {
+            if (idCard.equals(e.getIdCard())) {
+                medical2 = new Medical(medical2.getName(), medical2.getYearOfBirth(), medical2.getGender(),
+                        medical2.getNational(), medical2.getIdCard(), medical2.getMove(), medical2.getIdCar(),
+                        medical2.getNumberChair(), medical2.getDayStart(), medical2.getMonthStart(), medical2.getYearStart(),
+                        medical2.getDayEnd(), medical2.getMonthEnd(), medical2.getYearEnd(), medical2.getInformation14Day());
+            }
         }
-        return medical1;
+        return medical2;
     }
 
     @Override

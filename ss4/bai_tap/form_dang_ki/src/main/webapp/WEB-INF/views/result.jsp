@@ -12,7 +12,6 @@
     <title>Thông tin</title>
 </head>
 <body>
-<form:form modelAttribute="medical">
     <h1>Thông tin người khai</h1>
     <p>Họ và tên: ${medical.name}</p>
     <p>Năm sinh: ${medical.yearOfBirth}</p>
@@ -26,7 +25,5 @@
     <p>Ngày kết thúc: ${medical.dayEnd}-${medical.monthEnd}-${medical.yearEnd}</p>
     <p>Thông tin đi lại trong vòng 14 ngày: ${medical.information14Day}</p>
     <a href="/edit"><button>Cập nhật</button></a>
-
-</form:form>
 </body>
 </html>
