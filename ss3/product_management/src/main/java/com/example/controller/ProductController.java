@@ -6,7 +6,6 @@ import com.example.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/product")
@@ -60,6 +59,12 @@ public class ProductController {
     @PostMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Integer id){
         iProductService.delete(id);
-        return "redirect:/product";
+        return "redirect:product";
+    }
+
+    @GetMapping("/search")
+    public String searchProduct(@RequestParam String name, Model model){
+        model.addAttribute("product",iProductService.findName(name));
+        return "/list";
     }
 }

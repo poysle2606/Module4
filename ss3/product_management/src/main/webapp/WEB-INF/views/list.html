@@ -23,9 +23,19 @@
 <body>
 <center><h1>PRODUCT LIST</h1></center>
 <div class="container">
-    <a th:href="@{/product/create}">
-        Add new Product
-    </a>
+    <div style="float: left">
+        <a th:href="@{/product/create}">
+            Add new Product
+        </a>
+    </div>
+
+    <div style="float: left">
+        <form th:action="@{/product/search}">
+            <input type="search" placeholder="Search" name="name">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+
     <h1 th:if="${product.isEmpty()}">LIST EMPTY</h1>
     <table class="table table-striped" th:unless="${product.isEmpty()}">
         <tr>

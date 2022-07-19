@@ -50,7 +50,7 @@ public class ProductRepository implements IProductRepository {
     @Override
     public Product findById(Integer id) {
         Product product = null;
-        for (Product items : productList) {
+          for (Product items : productList) {
             if (items.getId().equals(id)) {
                 product = new Product(items.getId(), items.getName(), items.getPrice(), items.getProduction());
             }
@@ -59,7 +59,13 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product findName(String name) {
-        return null;
+    public List<Product> findName(String name) {
+       List<Product> products = new ArrayList<>();
+        for (Product e: productList) {
+            if(e.getName().contains(name)){
+                products.add(e);
+            }
+        }
+        return products;
     }
 }
