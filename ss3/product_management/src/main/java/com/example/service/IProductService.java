@@ -15,5 +15,5 @@ public interface IProductService {
 
     Product findById(Integer id);
 
-    Product findName();
+    Product findName(String name);
 }

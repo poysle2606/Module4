@@ -39,6 +39,11 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public void delete(Integer id) {
+        for (int i = 0; i < productList.size(); i++) {
+            if(productList.get(i).getId().equals(id)){
+                productList.remove(productList.get(i));
+            }
+        }
 
     }
 
@@ -54,7 +59,7 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product findName() {
+    public Product findName(String name) {
         return null;
     }
 }

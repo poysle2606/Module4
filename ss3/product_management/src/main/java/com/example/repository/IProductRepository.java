@@ -15,6 +15,6 @@ public interface IProductRepository {
 
     Product findById(Integer id);
 
-    Product findName();
+    Product findName(String name);
 
 }
