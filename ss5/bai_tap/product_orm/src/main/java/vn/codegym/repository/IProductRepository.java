@@ -1,0 +1,20 @@
+package vn.codegym.repository;
+
+import vn.codegym.model.Product;
+
+import java.util.List;
+
+public interface IProductRepository {
+    List<Product> findAll();
+
+    void create(Product product);
+
+    void edit(Product product, Integer id);
+
+    void delete(Integer id);
+
+    Product findById(Integer id);
+
+    List<Product> findName(String name);
+
+}
