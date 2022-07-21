@@ -46,7 +46,7 @@ public class ProductRepositoryImpl implements IProductRepository {
 
     @Override
     public List<Product> findName(String name) {
-        return entityManager.createQuery("select m from Product m where m.name=:name", Product.class).
-                setParameter("name",name).getSingleResult();
+
+        return null;
     }
 }
