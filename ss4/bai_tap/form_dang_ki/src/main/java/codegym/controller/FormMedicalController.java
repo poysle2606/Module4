@@ -50,6 +50,16 @@ public class FormMedicalController {
     public ModelAndView editFormMedical(@RequestParam("idCard") Integer idCard){
         ModelAndView modelAndView = new ModelAndView("edit");
         modelAndView.addObject("edit", iMedicalService.findIdCard(idCard));
+        modelAndView.addObject("yearOfBirth", iMedicalService.getYearOfBirth());
+        modelAndView.addObject("gender", iMedicalService.getGender());
+        modelAndView.addObject("national", iMedicalService.getNational());
+        modelAndView.addObject("move", iMedicalService.getMove());
+        modelAndView.addObject("dayStart", iMedicalService.getDayStart());
+        modelAndView.addObject("monthStart", iMedicalService.getMonthStart());
+        modelAndView.addObject("yearStart", iMedicalService.getYearStart());
+        modelAndView.addObject("dayEnd", iMedicalService.getDayEnd());
+        modelAndView.addObject("monthEnd", iMedicalService.getMonthEnd());
+        modelAndView.addObject("yearEnd", iMedicalService.getYearEnd());
         return modelAndView;
 
     }

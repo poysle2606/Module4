@@ -24,6 +24,6 @@
     <p>Ngày khởi hành: ${medical.dayStart}-${medical.monthStart}-${medical.yearStart}</p>
     <p>Ngày kết thúc: ${medical.dayEnd}-${medical.monthEnd}-${medical.yearEnd}</p>
     <p>Thông tin đi lại trong vòng 14 ngày: ${medical.information14Day}</p>
-    <a href="/edit"><button>Cập nhật</button></a>
+    <a href="/edit?idCard=${medical.idCard}"><button>Cập nhật</button></a>
 </body>
 </html>

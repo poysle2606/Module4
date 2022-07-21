@@ -11,8 +11,8 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<center><h1>MUSIC PLAYLIST</h1></center>
-<!--<strong th:text="${mess}"></strong>-->
+<center><h1>BLOGGER</h1></center>
+<strong th:text="${mess}"></strong>
 <div>
     <a th:href="@{/blogger/create}">
         <button>Create</button>
@@ -22,23 +22,24 @@
     <thead>
     <tr>
         <th>STT</th>
-        <th>Name song</th>
-        <th>Singer</th>
-        <th>Type of Music</th>
-        <th>Link</th>
+        <th>Name</th>
+        <th>Content</th>
+        <th>Status</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item : ${blo}">
-        <td th:text="${music.id}"></td>
-        <td th:text="${music.name}"></td>
+    <tr th:each="item : ${blogList}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.content}"></td>
+        <td th:text="${item.status}"></td>
         <td>
-            <a th:href="@{/blogger/edit/{id}/(id=${music.id})}">
+            <a th:href="@{/blogger/edit/{id}/(id=${item.id})}">
                 <button>Edit</button>
             </a>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    onclick="infoDelete(this.value)" th:value="${music.id}+','+${music.name}">Delete
+                    onclick="infoDelete(this.value)" th:value="${item.id}+','+${item.name}">Delete
             </button>
         </td>
     </tr>
@@ -47,7 +48,7 @@
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form method="post" th:action="@{/song/delete}">
+        <form method="post" th:action="@{/blogger/delete}">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete this Song</h5>

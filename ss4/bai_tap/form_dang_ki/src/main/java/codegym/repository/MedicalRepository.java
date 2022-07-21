@@ -5,12 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 public class MedicalRepository implements IMedicalRepository {
     List<Medical> medical1 = new ArrayList<>();
-
 
     @Override
     public Integer[] getYearOfBirth() {
@@ -32,7 +30,7 @@ public class MedicalRepository implements IMedicalRepository {
 
     @Override
     public String[] getMove() {
-        String[] move = {"Airplane", "Ships", "Oto", "More(writing)"};
+        String[] move = {" Airplane ", " Ships ", " Oto ", " More(writing) "};
         return move;
     }
 
@@ -81,13 +79,13 @@ public class MedicalRepository implements IMedicalRepository {
 
     @Override
     public Medical findIdCard(Integer idCard) {
- Medical medical2 = null;
+        Medical medical2 = null;
         for (Medical e : medical1) {
-            if (idCard.equals(e.getIdCard())) {
-                medical2 = new Medical(medical2.getName(), medical2.getYearOfBirth(), medical2.getGender(),
-                        medical2.getNational(), medical2.getIdCard(), medical2.getMove(), medical2.getIdCar(),
-                        medical2.getNumberChair(), medical2.getDayStart(), medical2.getMonthStart(), medical2.getYearStart(),
-                        medical2.getDayEnd(), medical2.getMonthEnd(), medical2.getYearEnd(), medical2.getInformation14Day());
+            if (e.getIdCard().equals(idCard)) {
+                medical2 = new Medical(e.getName(), e.getYearOfBirth(), e.getGender(),
+                        e.getNational(), e.getIdCard(), e.getMove(), e.getIdCar(),
+                        e.getNumberChair(), e.getDayStart(), e.getMonthStart(), e.getYearStart(),
+                        e.getDayEnd(), e.getMonthEnd(), e.getYearEnd(), e.getInformation14Day());
             }
         }
         return medical2;

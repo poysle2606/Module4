@@ -13,27 +13,27 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<center><h1>Mail Box</h1></center>
-    <table class="table table-dark table-striped">
-        <tr>
-            <th>ID:</th>
-            <th>Language:</th>
-            <th>Page Size:</th>
-            <th>Spams filter:</th>
-            <th>Signature:</th>
-            <th>Actions</th>
-        </tr>
-        <c:forEach items="${list}" var="list">
+    <center><h1>Mail Box</h1></center>
+        <table class="table table-dark table-striped">
             <tr>
-                <td>${list.id}</td>
-                <td>${list.language}</td>
-                <td>${list.pageSize}</td>
-                <td>${list.spamsFilter}</td>
-                <td>${list.signature}</td>
-                <td><a href="/edit?id=${list.id}"><button>Edit</button></a></td>
+                <th>ID:</th>
+                <th>Language:</th>
+                <th>Page Size:</th>
+                <th>Spams filter:</th>
+                <th>Signature:</th>
+                <th>Actions</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach items="${list}" var="list">
+                <tr>
+                    <td>${list.id}</td>
+                    <td>${list.language}</td>
+                    <td>${list.pageSize}</td>
+                    <td>${list.spamsFilter}</td>
+                    <td>${list.signature}</td>
+                    <td><a href="/edit?id=${list.id}"><button>Edit</button></a></td>
+                </tr>
+            </c:forEach>
+        </table>
 
 <h3>${mess}</h3>
 <!-- Optional JavaScript -->
