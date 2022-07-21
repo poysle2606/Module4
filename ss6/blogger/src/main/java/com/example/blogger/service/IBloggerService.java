@@ -14,4 +14,5 @@ public interface IBloggerService {
     void delete(int id);
 
     Blogger findById (int id);
+
 }
