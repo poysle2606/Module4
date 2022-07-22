@@ -1,11 +1,12 @@
-package com.example.blogger.service;
+package com.codegym.service;
 
-import com.example.blogger.model.Blogger;
+import com.codegym.model.Blogger;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface IBloggerService {
-    List<Blogger> findAll();
+    Page<Blogger> findAll(Pageable pageable);
 
     void create(Blogger blogger);
 
@@ -14,5 +15,7 @@ public interface IBloggerService {
     void delete(int id);
 
     Blogger findById (int id);
+
+    Page<Blogger> search(Pageable pageable,String name);
 
 }

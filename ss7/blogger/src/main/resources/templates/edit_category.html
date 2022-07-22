@@ -14,30 +14,17 @@
 <body>
 <center><h1>EDIT BLOGGER</h1></center>
 <div class="container">
-    <form th:action="@{/blogger/update}" method="post" th:object="${blogList}">
+    <form th:action="@{/category/update}" method="post" th:object="${category}">
         <div>
             <input type="hidden" th:field="*{id}">
         </div>
         <div>
-            <label for="name">Name Blog :</label>
+            <label for="name">Name Category :</label>
             <input class="form-control" type="text" id="name" th:field="*{name}">
         </div>
         <div>
-            <label for="singer">Content :</label>
-            <input class="form-control" type="text" id="singer" th:field="*{content}">
-        </div>
-        <div>
-            <label for="typeMusic">Status :</label>
-            <input class="form-control" type="text" id="typeMusic" th:field="*{status}">
-        </div>
-        <div>
-            <select th:field="*{category}">
-                <option th:each="item : ${categoryList}" th:value="${item.id}" th:text="${item.name}"></option>
-            </select>
-        </div>
-        <div>
             <button type="submit">Edit</button>
-            <a th:href="@{/blogger}">
+            <a th:href="@{/category}">
                 <button>Back</button>
             </a>
         </div>

@@ -1,11 +1,11 @@
-package com.example.blogger.service;
+package com.codegym.service;
 
-import com.example.blogger.model.Blogger;
-import com.example.blogger.repository.IBloggerRepository;
+import com.codegym.model.Blogger;
+import com.codegym.repository.IBloggerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class BloggerServiceImpl implements IBloggerService{
@@ -14,8 +14,8 @@ public class BloggerServiceImpl implements IBloggerService{
     IBloggerRepository iBloggerRepository;
 
     @Override
-    public List<Blogger> findAll() {
-        return iBloggerRepository.findAll();
+    public Page<Blogger> findAll(Pageable pageable) {
+        return iBloggerRepository.findAll(pageable);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class BloggerServiceImpl implements IBloggerService{
 
     @Override
     public void edit(Blogger blogger) {
-        iBloggerRepository.update(blogger.getContent(), blogger.getName(), blogger.getStatus(), blogger.getId());
+        iBloggerRepository.update(blogger.getContent(), blogger.getName(), blogger.getStatus(),blogger.getDayStart(), blogger.getId());
     }
 
     @Override
@@ -37,6 +37,11 @@ public class BloggerServiceImpl implements IBloggerService{
     @Override
     public Blogger findById(int id) {
         return iBloggerRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Page<Blogger> search(Pageable pageable, String name) {
+        return iBloggerRepository.searchByName(pageable,"%" + name + "%");
     }
 
 }

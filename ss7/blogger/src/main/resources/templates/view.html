@@ -1,6 +1,5 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -12,37 +11,16 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<center><h1>EDIT BLOGGER</h1></center>
+
+<center><h1>VIEW BLOGGER</h1></center>
 <div class="container">
-    <form th:action="@{/blogger/update}" method="post" th:object="${blogList}">
-        <div>
-            <input type="hidden" th:field="*{id}">
-        </div>
-        <div>
-            <label for="name">Name Blog :</label>
-            <input class="form-control" type="text" id="name" th:field="*{name}">
-        </div>
-        <div>
-            <label for="singer">Content :</label>
-            <input class="form-control" type="text" id="singer" th:field="*{content}">
-        </div>
-        <div>
-            <label for="typeMusic">Status :</label>
-            <input class="form-control" type="text" id="typeMusic" th:field="*{status}">
-        </div>
-        <div>
-            <select th:field="*{category}">
-                <option th:each="item : ${categoryList}" th:value="${item.id}" th:text="${item.name}"></option>
-            </select>
-        </div>
-        <div>
-            <button type="submit">Edit</button>
-            <a th:href="@{/blogger}">
-                <button>Back</button>
-            </a>
-        </div>
+    <form style="border: 1px solid black">
+        <span style="width: 100%; height: auto" th:text="${blog.content}"></span>
 
     </form>
+    <a th:href="@{/blogger}">
+        <button>Back</button>
+    </a>
 </div>
 
 <!-- Optional JavaScript -->

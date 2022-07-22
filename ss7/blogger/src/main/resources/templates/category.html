@@ -11,9 +11,9 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<center><h1>BLOGGER</h1></center>
+<center><h1>CATEGORY</h1></center>
 <center>
-    <form th:action="@{/blogger/search}">
+    <form th:action="@{/category/search}">
         <input type="text" name="search">
         <button type="submit">Search</button>
     </form>
@@ -21,20 +21,20 @@
 <strong th:text="${mess}"></strong>
 <div>
     <div style="float: left">
-        <a th:href="@{/blogger/create}">
+        <a th:href="@{/category/create}">
             <button>Create</button>
         </a>
     </div>
     <div style="float: left; margin-left: 10%">
-        <a th:href="@{/category}">
-            <button>Category List</button>
+        <a th:href="@{/blogger}">
+            <button>Blogger List</button>
         </a>
     </div>
 
     <div style="margin-left: 150px; float: right">
-        <a th:href="@{/blogger/(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious}">Previous</a>
-        <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>
-        <a th:href="@{/blogger(page=${blogList.number + 1})}" th:if="${blogList.hasNext}">Previous</a>
+        <a th:href="@{/category/(page=${category.number - 1})}" th:if="${category.hasPrevious}">Previous</a>
+        <span th:text="${category.number + 1}"></span>/<span th:text="${category.totalPages}"></span>
+        <a th:href="@{/category(page=${category.number + 1})}" th:if="${category.hasNext}">Previous</a>
     </div>
 </div>
 <table class="table">
@@ -42,21 +42,15 @@
     <tr>
         <th>STT</th>
         <th>Name</th>
-        <th>Status</th>
-        <th>Category</th>
-        <th>Day Start</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item : ${blogList}">
+    <tr th:each="item : ${category}">
         <td th:text="${item.id}"></td>
         <td th:text="${item.name}"></td>
-        <td th:text="${item.status}"></td>
-        <td th:text="${item.category.getName()}"></td>
-        <td th:text="${item.dayStart}"></td>
         <td>
-            <a class="btn btn-primary" style="text-decoration: none" th:href="@{/blogger/edit/{id}/(id=${item.id})}">
+            <a class="btn btn-primary" style="text-decoration: none" th:href="@{/category/edit/{id}/(id=${item.id})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-pen-fill"
                      viewBox="0 0 16 16">
@@ -72,13 +66,7 @@
                 </svg>
                 Delete
             </button>
-            <a class="btn btn-primary" style="text-decoration: none" th:href="@{/blogger/view/{id}/(id=${item.id})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                </svg>
-                View
-            </a>
+
         </td>
     </tr>
     </tbody>
@@ -86,7 +74,7 @@
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form method="post" th:action="@{/blogger/delete}">
+        <form method="post" th:action="@{/category/delete}">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete this Song</h5>

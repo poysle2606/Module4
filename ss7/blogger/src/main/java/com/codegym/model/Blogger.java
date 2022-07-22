@@ -1,9 +1,7 @@
-package com.example.blogger.model;
+package com.codegym.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Blogger {
@@ -13,15 +11,30 @@ public class Blogger {
     private String name;
     private String content;
     private String status;
+    private Date dayStart;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     public Blogger() {
     }
 
-    public Blogger(int id, String name, String content, String status) {
+    public Blogger(int id, String name, String content, String status, Date dayStart, Category category) {
         this.id = id;
         this.name = name;
         this.content = content;
         this.status = status;
+        this.dayStart = dayStart;
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getId() {
@@ -46,6 +59,14 @@ public class Blogger {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Date getDayStart() {
+        return dayStart;
+    }
+
+    public void setDayStart(Date dayStart) {
+        this.dayStart = dayStart;
     }
 
     public String getStatus() {
