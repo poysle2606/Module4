@@ -1,7 +1,7 @@
 package com.codegym.controller;
 
 import com.codegym.model.Product;
-import com.codegym.model.ProductDto;
+import com.codegym.dto.ProductDto;
 import com.codegym.service.IProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

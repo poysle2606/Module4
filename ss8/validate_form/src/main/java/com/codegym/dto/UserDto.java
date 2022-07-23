@@ -1,4 +1,4 @@
-package com.codegym.model;
+package com.codegym.dto;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.data.jpa.repository.Query;
