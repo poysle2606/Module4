@@ -14,24 +14,30 @@
 <body>
 <center><h1>CREATE PRODUCT</h1></center>
 <div class="container">
-    <form th:action="@{/product/save}" method="post" th:object="${product}">
+    <form th:action="@{/product/create}" method="post" th:object="${product}">
         <div>
             <label for="name">Name Product:</label>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             <input class="form-control" type="text" id="name" th:field="*{name}">
+
         </div>
         <div>
             <label for="singer">Price :</label>
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
             <input class="form-control" type="text" id="singer" th:field="*{price}">
+
         </div>
         <div>
             <label for="typeMusic">Production :</label>
+            <span th:if="${#fields.hasErrors('production')}" th:errors="*{production}"></span>
             <input class="form-control" type="text" id="typeMusic" th:field="*{production}">
+
         </div>
         <div>
             <button type="submit">Create</button>
-            <a th:href="@{/product}">
-                <button>Back</button>
-            </a>
+            <button>
+                <a th:href="@{/product}">Back</a>
+            </button>
         </div>
     </form>
 </div>
