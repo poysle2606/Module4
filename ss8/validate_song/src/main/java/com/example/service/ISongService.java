@@ -1,0 +1,15 @@
+package com.example.service;
+
+import com.example.model.Song;
+
+import java.util.List;
+
+public interface ISongService {
+    List<Song> findAll();
+
+    void create(Song song);
+
+    void edit(Song song);
+
+    Song findById(int id);
+}
