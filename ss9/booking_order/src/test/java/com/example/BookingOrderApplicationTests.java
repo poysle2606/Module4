@@ -1,10 +1,10 @@
-package com.codegym;
+package com.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BookingOderApplicationTests {
+class BookingOrderApplicationTests {
 
     @Test
     void contextLoads() {

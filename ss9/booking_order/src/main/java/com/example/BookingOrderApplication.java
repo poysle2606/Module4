@@ -1,13 +1,13 @@
-package com.codegym;
+package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookingOderApplication {
+public class BookingOrderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BookingOderApplication.class, args);
+        SpringApplication.run(BookingOrderApplication.class, args);
     }
 
 }

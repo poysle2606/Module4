@@ -12,26 +12,30 @@
 </head>
 <body>
 <center><h1>CHI TIẾT CUỐN SÁCH</h1></center>
-<form action="" method="post" th:object="${book}">
     <table>
         <tr>
             <td>Tên sách:</td>
-            <td th:field="*{name}"></td>
+            <td>
+                <input type="text" class="form-control" readonly th:field="${book.name}">
+            </td>
         </tr>
         <tr>
             <td>Số lượng:</td>
-            <td th:field="*{amount}"></td>
+            <td>
+                <input type="text" class="form-control" readonly th:field="${book.amount}">
+            </td>
         </tr>
         <tr>
             <td></td>
             <td>
                 <button><a th:href="@{/book}">Quay lại</a></button>
             </td>
-            <td></td>
+            <td>
+                <button><a th:href="@{/booking/{id}/(id=${book.id})}">Mượn sách</a></button>
+            </td>
         </tr>
     </table>
 
-</form>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
