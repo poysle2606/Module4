@@ -9,6 +9,7 @@ public class UserOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String name;
     private long code;
     private Date date;
 
@@ -19,8 +20,9 @@ public class UserOrder {
     public UserOrder() {
     }
 
-    public UserOrder(int id, long code, Date date, Book book) {
+    public UserOrder(int id, String name, long code, Date date, Book book) {
         this.id = id;
+        this.name = name;
         this.code = code;
         this.date = date;
         this.book = book;
@@ -56,6 +58,14 @@ public class UserOrder {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
 

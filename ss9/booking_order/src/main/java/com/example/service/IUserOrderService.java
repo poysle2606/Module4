@@ -11,4 +11,8 @@ public interface IUserOrderService {
     UserOrder findById(int id);
 
     void save(UserOrder userOrder);
+
+    UserOrder findByCode(long code);
+
+    void delete(UserOrder userOrder);
 }

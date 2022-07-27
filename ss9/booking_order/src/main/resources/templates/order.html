@@ -11,29 +11,33 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<center><h1>CHI TIẾT CUỐN SÁCH</h1></center>
-    <table>
-        <tr>
-            <td>Tên sách:</td>
-            <td>
-                <input type="text" class="form-control" readonly th:field="${book.name}">
-            </td>
-        </tr>
-        <tr>
-            <td>Số lượng:</td>
-            <td>
-                <input type="text" class="form-control" readonly th:field="${book.amount}">
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button><a th:href="@{/book}">Quay lại</a></button>
-            </td>
-        </tr>
-    </table>
-
-
+<center><h1>Mượn sách</h1></center>
+<form th:action="@{/book/save}" method="post">
+<table>
+    <tr>
+        <td>Tên người mượn:</td>
+        <td>
+            <input type="text" th:field="*{user.name}">
+        </td>
+    </tr>
+    <tr>
+        <td>Chọn sách:</td>
+        <td>
+            <select th:field="*{user.book.id}">
+                <option th:each="items : ${book}" th:value="${items.id}" th:text="${items.name}"></option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button><a th:href="@{/book}" style="text-decoration: none">Quay lại</a></button>
+        </td>
+        <td>
+            <button type="submit">Đồng ý mượn</button>
+        </td>
+    </tr>
+</table>
+</form>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -26,6 +26,7 @@ public class BookController {
 
     @GetMapping("")
     public String list(Model model) {
+        model.addAttribute("user", new UserOrder());
         model.addAttribute("book", iBookService.findAll());
         return "/list";
     }
@@ -37,16 +38,53 @@ public class BookController {
         return "/view";
     }
 
-    @PostMapping("/booking")
-    public String orderBook(@RequestParam int id,@ModelAttribute UserOrder userOrder, RedirectAttributes redirectAttributes) {
-       Book book = iBookService.findById(id);
-       if (book.getAmount() == 0){
-           redirectAttributes.addFlashAttribute("mess", "Hết sách để mượn");
-       } else {
-           book.setAmount(book.getAmount() - 1);
-           iBookService.save(book);
-           redirectAttributes.addFlashAttribute("mess","Mượn sách thành công.");
-       }
+    @GetMapping("/order")
+    public String orderForm(Model model) {
+        model.addAttribute("book", iBookService.findAll());
+        model.addAttribute("user", new UserOrder());
+        return "order";
+    }
+
+    @PostMapping("/save")
+    public String bookOrder(@ModelAttribute UserOrder user, RedirectAttributes redirectAttributes) throws Exception {
+        Book book = iBookService.findById(user.getBook().getId());
+
+        if (book.getAmount() == 0) {
+            throw new Exception();
+        } else {
+            book.setAmount(book.getAmount() - 1);
+
+            iBookService.save(book);
+
+            iUserOrderService.save(user);
+
+            redirectAttributes.addFlashAttribute("mess", "Mượn sách thành công");
+        }
         return "redirect:/book";
     }
+
+    @PostMapping("/remove")
+    public String bookReturn(@RequestParam long code, RedirectAttributes redirectAttributes) throws Exception {
+        UserOrder userOrder = iUserOrderService.findByCode(code);
+        if (userOrder == null) {
+            throw new NullPointerException();
+        } else {
+            userOrder.getBook().setAmount(userOrder.getBook().getAmount() + 1);
+
+            iUserOrderService.delete(userOrder);
+
+            redirectAttributes.addFlashAttribute("mess", "Trả sách thành công");
+        }
+        return "redirect:/book";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String errorPage() {
+        return "error";
+    }
+    @ExceptionHandler(NullPointerException.class)
+    public String errorPage1() {
+        return "error1";
+    }
+
 }
