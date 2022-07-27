@@ -12,6 +12,7 @@
 </head>
 <body>
 <center><h1>CHI TIẾT CUỐN SÁCH</h1></center>
+<form th:action="@{/book/booking}" method="post">
     <table>
         <tr>
             <td>Tên sách:</td>
@@ -31,10 +32,12 @@
                 <button><a th:href="@{/book}">Quay lại</a></button>
             </td>
             <td>
-                <button><a th:href="@{/booking/{id}/(id=${book.id})}">Mượn sách</a></button>
+                <button type="submit">Mượn sách</button>
             </td>
         </tr>
     </table>
+</form>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -25,6 +25,8 @@ public class UserServiceImpl implements IUserOrderService{
 
     @Override
     public void save(UserOrder userOrder) {
+        long code = (long) (Math.random() * (99999 - 10000) + 10000);
+        userOrder.setCode(code);
         iUserOrderRepository.save(userOrder);
     }
 }

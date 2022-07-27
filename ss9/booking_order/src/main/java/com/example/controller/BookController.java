@@ -31,31 +31,22 @@ public class BookController {
     }
 
     @GetMapping("/view/{id}")
-    public String view(@PathVariable Integer id, Model model) {
+    public String view(@PathVariable int id, Model model) {
         Book book = iBookService.findById(id);
         model.addAttribute("book", book);
         return "/view";
     }
 
-    @GetMapping("/booking/{id}")
-    public String orderBook(@PathVariable int id, RedirectAttributes redirectAttributes) {
-        UserOrder userOrder = new UserOrder();
-        long code = (long) (Math.random() * (99999 - 10000) + 10000);
-        userOrder.setCode(code);
-
-        long millis = System.currentTimeMillis();
-        userOrder.setDate(new java.sql.Date(millis));
-
-        Book book = iBookService.findById(id);
-        book.setAmount(book.getAmount() - 1);
-
-        Set<UserOrder> orders = book.getOrders();
-        orders.add(userOrder);
-        book.setOrders(orders);
-
-        iUserOrderService.save(userOrder);
-        iBookService.save(book);
-        redirectAttributes.addFlashAttribute("mess","Mượn sách thành công.");
+    @PostMapping("/booking")
+    public String orderBook(@RequestParam int id,@ModelAttribute UserOrder userOrder, RedirectAttributes redirectAttributes) {
+       Book book = iBookService.findById(id);
+       if (book.getAmount() == 0){
+           redirectAttributes.addFlashAttribute("mess", "Hết sách để mượn");
+       } else {
+           book.setAmount(book.getAmount() - 1);
+           iBookService.save(book);
+           redirectAttributes.addFlashAttribute("mess","Mượn sách thành công.");
+       }
         return "redirect:/book";
     }
 }
