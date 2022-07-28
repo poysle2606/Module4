@@ -19,17 +19,39 @@ public class BloggerController {
     IBloggerService iBloggerService;
 
     @GetMapping("")
-    public ResponseEntity<List<Blogger>> listBlogger(){
+    public ResponseEntity<List<Blogger>> listBlogger() {
         List<Blogger> bloggerList = iBloggerService.findAll();
-        if (bloggerList.isEmpty()){
+        if (bloggerList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(bloggerList,HttpStatus.OK);
+        return new ResponseEntity<>(bloggerList, HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity addBlogger(@RequestBody Blogger blogger){
+    public ResponseEntity addBlogger(@RequestBody Blogger blogger) {
         iBloggerService.create(blogger);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Blogger> updateBlogger(@PathVariable int id, @RequestBody Blogger blogger) {
+        Blogger blogger1 = iBloggerService.findById(id);
+        if (blogger1 == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        blogger1.setName(blogger.getName());
+        blogger1.setContent(blogger.getContent());
+        blogger1.setStatus(blogger.getStatus());
+        blogger1.setDayStart(blogger.getDayStart());
+        blogger1.setCategory(blogger.getCategory());
+
+        iBloggerService.edit(blogger1);
+        return new ResponseEntity<>(blogger1,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteBlogger(@PathVariable int id){
+        iBloggerService.delete(id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
