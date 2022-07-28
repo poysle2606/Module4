@@ -11,20 +11,43 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<center><h1>Giỏ hàng của bạn</h1></center>
 <div class="container">
-    <div class="row">
-        <div class="col-4" th:if="${cart !=null && cart.getProductMap().size() > 0}">
-            <div class="card" style="width: 18rem; text-align: center" th:each="products : ${cart.productMap}">
-                <img th:src="${productMap.key.image}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text" th:text="${productMap.key.name}"></p>
-                    <p class="card-text" th:text="${productMap.key.description}"></p>
-                    <p class="card-text" th:text="*{productMap.key.price}"></p>
-                    <p class="card-text" th:text="*{productMap.value}"></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <form th:action="@{/shop}" th:object="${cart}" method="post">
+        <h3>Tổng mặt hàng: <span th:text="${cart.countItem()}"></span></h3>
+        <h3>Tổng sản phẩm: <span th:text="${cart.countProductQuantity()}"></span></h3>
+        <table class="table">
+            <tr>
+                <button><a th:href="@{/shop}" style="text-decoration: none">Thêm sản phẩm khác</a></button>
+            </tr>
+            <tr>
+                <th>Hình ảnh sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Giới thiệu</th>
+                <th>Chức năng</th>
+                <th>Giá</th>
+            </tr>
+            <tr th:each="product : ${cart.productMap}">
+                <td>
+                    <img th:src="@{${product.getKey().image}}" width="50px" height="300px" class="card-img-top"
+                         alt="...">
+                </td>
+                <td th:text="${product.getKey().name}"></td>
+                <td th:text="${product.getKey().description}"></td>
+                <td>
+                    <a id="decrease_button" th:text="${'-'}"
+                       th:href="@{/shop/remove/__${product.getKey().id}__(action='show')}"></a>
+                    <span th:text="${product.getValue()}"></span>
+                    <a id="increase_button" th:href="@{/shop/add/__${product.getKey().id}__(action='show')}"
+                       th:text="${'+'}"></a>
+                </td>
+                <td th:text="${product.getKey().price}"></td>
+            <tr>
+                <td>Tổng tiền</td>
+                <td th:text="${cart.countTotalPayment()}"></td>
+            </tr>
+        </table>
+    </form>
 
     <div class="alert alert-warning" role="alert" th:if="${cart == null || cart.getProductMap().size == 0}">
         Cart is Empty

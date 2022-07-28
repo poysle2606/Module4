@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
 import java.util.Optional;
 
 @Controller
@@ -21,7 +21,7 @@ public class ProductController {
 
     // khởi tạo giá trị cho session
     @ModelAttribute("cart")
-    public CartDto initCartDto(){
+    public CartDto initCartDto() {
         return new CartDto();
     }
 
@@ -29,20 +29,36 @@ public class ProductController {
     IProductService iProductService;
 
     @GetMapping("")
-    public String listProduct(Model model){
-        model.addAttribute("product",iProductService.findAll());
+    public String listProduct(Model model) {
+        model.addAttribute("product", iProductService.findAll());
         return "list";
     }
 
     @GetMapping("/add/{id}")
-    public String detailProduct(@PathVariable int id,@SessionAttribute ("cart") CartDto cartDto){
-        Optional<MyProduct> product = iProductService.findById(id);
-        if(product.isPresent()){
-            ProductDto productDto = new ProductDto();
-            BeanUtils.copyProperties(productDto,product);
-
-            cartDto.addProduct(productDto);
+    public String detailProduct(@PathVariable int id, @SessionAttribute("cart") CartDto cartDto, @RequestParam("action") String action) {
+        Optional<MyProduct> productOptional = iProductService.findById(id);
+        if (!productOptional.isPresent()) {
+            return "/error";
         }
-        return "redirect:/cart";
+        if (action.equals("show")) {
+            cartDto.addProduct(productOptional.get());
+            return "redirect:/shopping";
+        }
+        cartDto.addProduct(productOptional.get());
+        return "redirect:/shop";
+    }
+
+    @GetMapping("/remove/{id}")
+    public String removeProduct(@PathVariable int id, @SessionAttribute("cart") CartDto cartDto, @RequestParam("action") String action) {
+        Optional<MyProduct> productOptional = iProductService.findById(id);
+        if (!productOptional.isPresent()) {
+            return "/error";
+        }
+        if (action.equals("show")) {
+            cartDto.remove(productOptional.get());
+            return "redirect:/shopping";
+        }
+        cartDto.remove(productOptional.get());
+        return "redirect:/shop";
     }
 }
