@@ -1,19 +1,26 @@
-package model.customer;
+package com.codegym.model.customer;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
 public class CustomerType {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    @OneToMany(mappedBy = "customerType")
+    private Set<Customer> customer;
 
     public CustomerType() {
     }
 
-    public CustomerType(String name) {
-        this.name = name;
-    }
-
-    public CustomerType(int id, String name) {
+    public CustomerType(int id, String name, Set<Customer> customer) {
         this.id = id;
         this.name = name;
+        this.customer = customer;
     }
 
     public int getId() {
@@ -30,5 +37,13 @@ public class CustomerType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Customer> getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Set<Customer> customer) {
+        this.customer = customer;
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
-public interface IBloggerService {
+public interface    IBloggerService {
     Page<Blogger> findAll(Pageable pageable);
 
     void create(Blogger blogger);
