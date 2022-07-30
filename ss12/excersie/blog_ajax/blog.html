@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <style>
+            table{
+                border: dotted;
+            }
+            th{
+                background-color: gray;
+            }
+        </style>
+</head>
+<body>
+<input type="text" id="searchName" autocomplete="on">
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Content</th>
+        <th>Day</th>
+        <th>Status</th>
+        <th>Category</th>
+    </tr>
+</table>
+<button id="node">Click!</button>
+
+<script src="jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://localhost:8080/blog/api/v1",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                let arrays = [];
+                let numberPage = 0;
+                if(data <= 1){
+                    numberPage = data.length;
+                } else {
+                    numberPage = 1;
+                }
+                for (let i = 0; i < numberPage; i++) {
+                    console.log(data[i]);
+                    arrays.push("<tr>");
+                    arrays.push("<td>" + data[i].id + "</td>");
+                    arrays.push("<td>" + data[i].name + "</td>");
+                    arrays.push("<td>" + data[i].content + "</td>");
+                    arrays.push("<td>" + data[i].dayStart + "</td>");
+                    arrays.push("<td>" + data[i].status + "</td>");
+                    arrays.push("<td>" + data[i].category.name + "</td>");
+                    arrays.push("</tr>");
+                }
+                $("table").append((arrays.join("")));
+            }
+        })
+
+        $("#searchName").keyup(function () {
+            let value = $(this).val();
+            console.log(value);
+
+            $("table").empty();
+
+            // $("#ok").remove();
+          //  $("#ok").html("");
+
+            $.ajax({
+                url: "http://localhost:8080/blog/api/v1/search?name=" + value,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let arrays = [];
+
+                    arrays.push("<tr>")
+                    arrays.push("<th>" + "ID" + "</th>")
+                    arrays.push("<th>" + "Name" + "</th>")
+                    arrays.push("<th>" + "Content" + "</th>")
+                    arrays.push("<th>" + "Day" + "</th>")
+                    arrays.push("<th>" + "Status" + "</th>")
+                    arrays.push("<th>" + "Category" + "</th>")
+                    arrays.push("</tr>")
+
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+
+                        arrays.push("<tr>");
+                        arrays.push("<td>" + data[i].id + "</td>");
+                        arrays.push("<td>" + data[i].name + "</td>");
+                        arrays.push("<td>" + data[i].content + "</td>");
+                        arrays.push("<td>" + data[i].dayStart + "</td>");
+                        arrays.push("<td>" + data[i].status + "</td>");
+                        arrays.push("<td>" + data[i].category.name + "</td>");
+                        arrays.push("</tr>");
+                    }
+                    $("table").append((arrays.join("")));
+                }
+            })
+       })
+
+        $("#node").click(function () {
+
+            $("table").empty();
+
+            $.ajax({
+                url: "http://localhost:8080/blog/api/v1",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let arrays = [];
+
+                    arrays.push("<tr>")
+                    arrays.push("<th>" + "ID" + "</th>")
+                    arrays.push("<th>" + "Name" + "</th>")
+                    arrays.push("<th>" + "Content" + "</th>")
+                    arrays.push("<th>" + "Day" + "</th>")
+                    arrays.push("<th>" + "Status" + "</th>")
+                    arrays.push("<th>" + "Category" + "</th>")
+                    arrays.push("</tr>")
+
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        arrays.push("<tr>");
+                        arrays.push("<td>" + data[i].id + "</td>");
+                        arrays.push("<td>" + data[i].name + "</td>");
+                        arrays.push("<td>" + data[i].content + "</td>");
+                        arrays.push("<td>" + data[i].dayStart + "</td>");
+                        arrays.push("<td>" + data[i].status + "</td>");
+                        arrays.push("<td>" + data[i].category.name + "</td>");
+                        arrays.push("</tr>");
+                    }
+                    $("table").append((arrays.join("")));
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

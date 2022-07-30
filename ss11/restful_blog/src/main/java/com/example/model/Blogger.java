@@ -15,7 +15,7 @@ public class Blogger {
     private String name;
     private String content;
     private String status;
-    private Date dayStart;
+    private String dayStart;
 
     @ManyToOne
     // @JsonManagedReference
@@ -25,7 +25,7 @@ public class Blogger {
     public Blogger() {
     }
 
-    public Blogger(int id, String name, String content, String status, Date dayStart, Category category) {
+    public Blogger(int id, String name, String content, String status, String dayStart, Category category) {
         this.id = id;
         this.name = name;
         this.content = content;
@@ -66,11 +66,11 @@ public class Blogger {
         this.content = content;
     }
 
-    public Date getDayStart() {
+    public String getDayStart() {
         return dayStart;
     }
 
-    public void setDayStart(Date dayStart) {
+    public void setDayStart(String dayStart) {
         this.dayStart = dayStart;
     }
 

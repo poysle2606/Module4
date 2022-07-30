@@ -17,7 +17,7 @@ public interface IBloggerRepository extends JpaRepository<Blogger,Integer> {
 
     @Modifying
     @Query(value = "update Blogger set content=:content,name=:name, status=:status, day_start=:dayStart where id=:id",nativeQuery = true)
-    void update(@Param("content") String content, @Param("name") String name, @Param("status") String status, @Param("dayStart") Date dayStart, @Param("id") int id);
+    void update(@Param("content") String content, @Param("name") String name, @Param("status") String status, @Param("dayStart") String dayStart, @Param("id") int id);
 
     @Query(value = "select * from Blogger where name like :search", nativeQuery = true)
     List<Blogger> searchByName(@Param("search") String name);

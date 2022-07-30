@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/blog/api/v1")
 public class BloggerController {
 
@@ -53,5 +54,14 @@ public class BloggerController {
     public ResponseEntity deleteBlogger(@PathVariable int id){
         iBloggerService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Blogger>> searchByName(@RequestParam("name") String name ){
+        List<Blogger> bloggerList = iBloggerService.search(name);
+        if (bloggerList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(bloggerList, HttpStatus.OK);
     }
 }
