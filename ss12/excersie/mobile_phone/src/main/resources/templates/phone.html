@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+
+    <input type="text" id="id" placeholder="id" hidden>
+
+    <tr>
+        <td>Producer:</td>
+        <td><input type="text" id="producer" placeholder="producer"></td>
+    </tr>
+    <tr>
+        <td>Model:</td>
+        <td><input type="text" id="model" placeholder="model"></td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td><input type="text" id="price" placeholder="price"></td>
+    </tr>
+    <tr>
+        <td>
+            <button id="addPhone">Create</button>
+        </td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>Model</th>
+        <th>Producer</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+</table>
+<script src="../static/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://localhost:8080/phone/api/v1",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                let arrays = [];
+                for (let i = 0; i < data.length; i++) {
+                    arrays.push("<tr>" +
+                        "<td>" + data[i].id + "</td>" +
+                        "<td>" + data[i].model + "</td>" +
+                        "<td>" + data[i].producer + "</td>" +
+                        "<td>" + data[i].price + "</td>"
+                        + "</tr>>")
+                }
+                $(".table").append((arrays.join("")));
+            }
+        })
+        $("#addPhone").click(function () {
+            
+        })
+    })
+</script>
+</body>
+</html>
