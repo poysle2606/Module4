@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -13,7 +13,7 @@
 <body>
 <center><h1>BLOGGER</h1></center>
 <center>
-    <form th:action="@{/blogger/search}">
+    <form th:action="@{/blogger/search}" sec:authorize="hasRole('DONG')">
         <input type="text" name="search">
         <button type="submit">Search</button>
     </form>
@@ -27,7 +27,7 @@
     </div>
 </div>
 <div class="container">
-    <div style="float: left">
+    <div style="float: left" sec:authorize="hasRole('DONG')">
         <a th:href="@{/blogger/create}">
             <button>Create</button>
         </a>
@@ -55,7 +55,7 @@
             <td th:text="${item.status}"></td>
             <td th:text="${item.category.getName()}"></td>
             <td th:text="${item.dayStart}"></td>
-            <td>
+            <td sec:authorize="hasRole('DONG')">
                 <a class="btn btn-primary" style="text-decoration: none"
                    th:href="@{/blogger/edit/{id}/(id=${item.id})}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

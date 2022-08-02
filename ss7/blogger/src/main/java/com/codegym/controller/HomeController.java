@@ -11,8 +11,8 @@ public class HomeController {
         return "/home";
     }
 
-//    @GetMapping("/c0322g1")
-//    public String loginPage(){
-//        return "/login";
-//    }
+    @GetMapping("/c0322g1")
+    public String loginPage(){
+        return "/myLogin";
+    }
 }
