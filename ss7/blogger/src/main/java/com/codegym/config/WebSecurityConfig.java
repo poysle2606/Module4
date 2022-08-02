@@ -18,10 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailServiceImpl userDetailService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    //    Cài đặt cách lấy thông tin userDetail, cơ chế mã hóa password
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
@@ -29,7 +30,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().formLogin().defaultSuccessUrl("/blogger")
-                .permitAll().and().authorizeRequests().anyRequest().authenticated();
+        http.csrf().disable()
+                .formLogin()
+                //.loginPage("/c0322g1")
+                .defaultSuccessUrl("/home").permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/home").permitAll()
+                .antMatchers("/blogger").hasAnyRole("HUNG")
+                .antMatchers("/blogger/**").hasAnyRole("DONG")
+                .anyRequest().authenticated();
     }
 }

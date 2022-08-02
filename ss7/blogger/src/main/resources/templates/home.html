@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center><h1>ĐÂY LÀ TRANG HOME NHA!</h1></center>
+
+<a sec:authorize="!isAuthenticated()" th:href="@{/login}">Đăng Nhập</a>
+<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Đăng Xuất</a>
+
+<div sec:authorize="isAuthenticated()">
+    <h2>Đã đăng nhập thành công</h2>
+    <h2>Xin chào: <span sec:authentication="principal.username"></span></h2>
+    <a th:href="@{/blogger}">List</a>
+</div>
+
+</body>
+</html>

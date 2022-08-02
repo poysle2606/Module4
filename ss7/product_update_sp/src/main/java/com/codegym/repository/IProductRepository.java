@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public interface IProductRepository extends JpaRepository<Product, Integer> {
+public interface    IProductRepository extends JpaRepository<Product, Integer> {
 
     @Modifying
     @Query(value = "update Product set name=:name, price=:price, production=:production where id=:id", nativeQuery = true)
