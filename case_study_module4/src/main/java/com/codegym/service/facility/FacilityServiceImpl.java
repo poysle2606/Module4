@@ -20,26 +20,26 @@ public class FacilityServiceImpl implements IFacilityService{
 
     @Override
     public void create(Facility facility) {
-
+        iFacilityRepository.save(facility);
     }
 
     @Override
     public void update(Facility facility) {
-
+        iFacilityRepository.save(facility);
     }
 
     @Override
     public void delete(int id) {
-
+        iFacilityRepository.deleteById(id);
     }
 
     @Override
     public Facility findById(int id) {
-        return null;
+        return iFacilityRepository.findById(id).orElse(null);
     }
 
     @Override
     public Page<Facility> findByName(Pageable pageable, String name) {
-        return null;
+        return iFacilityRepository.findByName(pageable,"%" + name + "%");
     }
 }

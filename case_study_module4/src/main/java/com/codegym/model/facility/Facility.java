@@ -17,8 +17,8 @@ public class Facility {
     private Integer maxPeople;
     private String standardRoom;
     private String descriptionOtherConvenience;
-    private Double poolArea;
-    private Integer numberOfFloors;
+    private double poolArea;
+    private int numberOfFloors;
     private String facilityFree;
 
     @ManyToOne
@@ -36,8 +36,8 @@ public class Facility {
     }
 
     public Facility(int idFacility, String name, Integer area, Double cost, Integer maxPeople,
-                    String standardRoom, String descriptionOtherConvenience, Double poolArea,
-                    Integer numberOfFloors, String facilityFree) {
+                    String standardRoom, String descriptionOtherConvenience, double poolArea,
+                    int numberOfFloors, String facilityFree) {
         this.idFacility = idFacility;
         this.name = name;
         this.area = area;
@@ -106,19 +106,19 @@ public class Facility {
         this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
-    public Double getPoolArea() {
+    public double getPoolArea() {
         return poolArea;
     }
 
-    public void setPoolArea(Double poolArea) {
+    public void setPoolArea(double poolArea) {
         this.poolArea = poolArea;
     }
 
-    public Integer getNumberOfFloors() {
+    public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public void setNumberOfFloors(Integer numberOfFloors) {
+    public void setNumberOfFloors(int numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
     }
 

@@ -66,6 +66,9 @@
 <div style="margin-top: 20px">
     <center><H1>DANH SÁCH DỊCH VỤ</H1></center>
 </div>
+<div align="center">
+    <h3 style="color: greenyellow" th:text="${mess}"></h3>
+</div>
 <div class="container">
     <button class="create"><a th:href="@{/facility/create}" style="text-decoration: none">Thêm mới dịch vụ</a>
     </button>
@@ -131,10 +134,10 @@
                             <div class="modal-body">
                                 Do you want delete product <span class="text-info"
                                                                  th:text="${items.name}"></span>
-                                with id = <span class="text-info" th:text="${items.name}"></span>
+                                with id = <span class="text-info" th:text="${items.idFacility}"></span>
                             </div>
                             <div class="modal-footer">
-                                <a th:href="@{/customer/delete(id=${items.idFacility})}"
+                                <a th:href="@{/facility/delete(id=${items.idFacility})}"
                                    class="btn btn-outline-success">Delete</a>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                 </button>
