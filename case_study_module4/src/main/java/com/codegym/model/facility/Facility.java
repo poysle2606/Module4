@@ -12,13 +12,13 @@ public class Facility {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFacility;
     private String name;
-    private int area;
-    private double cost;
-    private int maxPeople;
+    private Integer area;
+    private Double cost;
+    private Integer maxPeople;
     private String standardRoom;
     private String descriptionOtherConvenience;
-    private double poolArea;
-    private int numberOfFloors;
+    private Double poolArea;
+    private Integer numberOfFloors;
     private String facilityFree;
 
     @ManyToOne
@@ -35,9 +35,9 @@ public class Facility {
     public Facility() {
     }
 
-    public Facility(int idFacility, String name, int area, double cost, int maxPeople,
-                    String standardRoom, String descriptionOtherConvenience, double poolArea,
-                    int numberOfFloors, String facilityFree) {
+    public Facility(int idFacility, String name, Integer area, Double cost, Integer maxPeople,
+                    String standardRoom, String descriptionOtherConvenience, Double poolArea,
+                    Integer numberOfFloors, String facilityFree) {
         this.idFacility = idFacility;
         this.name = name;
         this.area = area;
@@ -66,27 +66,27 @@ public class Facility {
         this.name = name;
     }
 
-    public int getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
-    public int getMaxPeople() {
+    public Integer getMaxPeople() {
         return maxPeople;
     }
 
-    public void setMaxPeople(int maxPeople) {
+    public void setMaxPeople(Integer maxPeople) {
         this.maxPeople = maxPeople;
     }
 
@@ -106,19 +106,19 @@ public class Facility {
         this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
-    public double getPoolArea() {
+    public Double getPoolArea() {
         return poolArea;
     }
 
-    public void setPoolArea(double poolArea) {
+    public void setPoolArea(Double poolArea) {
         this.poolArea = poolArea;
     }
 
-    public int getNumberOfFloors() {
+    public Integer getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public void setNumberOfFloors(int numberOfFloors) {
+    public void setNumberOfFloors(Integer numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
     }
 

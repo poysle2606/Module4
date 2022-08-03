@@ -1,0 +1,193 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--    <link rel="stylesheet" th:href="@{bootstrap-5.0.2-dist/css/bootstrap.css}">-->
+    <!--    <link rel="stylesheet" href="/css/css_home.css}">-->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/css_home.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="header-furama">
+    <div>
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" height="70" width="55"
+             style="padding-top: 5px" alt="">
+    </div>
+
+    <div>
+        <img src="https://cdn-icons.flaticon.com/png/512/3059/premium/3059518.png?token=exp=1656917205~hmac=461c3388245578370ff666cc8fc285fb"
+             height="25" width="25"
+             style="margin: 25px 10px 25px 900px"/>
+        <a href="" class="link-myself">Đông Đú Đởn</a>
+    </div>
+
+</div>
+<nav class="navbar navbar-expand-lg navbar-primary bg-dark" style="position: sticky; top: 0">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active button-function" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="/employee">Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="/customer">Customer</a>
+                </li>
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle button-function" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Service
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Villa</a></li>
+                        <li><a class="dropdown-item" href="#">Room</a></li>
+                        <li><a class="dropdown-item" href="#">House</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="#">Contract</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 500px">
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="/facility">Quay lại</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div style="margin-top: 20px">
+    <center><H1>THÊM MỚI DỊCH VỤ</H1></center>
+</div>
+<div class="container">
+    <form th:action="@{/facility/save}" method="post" th:object="${facility}">
+        <table>
+<!--            <tr>-->
+<!--                <td>Tên dịch vụ:</td>-->
+<!--                <td th:text="${facilityType.name}">-->
+<!--                    <input type="text" disabled>-->
+<!--                </td>-->
+<!--            </tr>-->
+            <tr>
+                <td>Loại dịch vụ:</td>
+                <td>
+                    <select th:field="*{facilityType}" onclick="onchangeFacility(this.value)">
+                        <option th:each="item : ${facilityType}" th:value="${item.id}" th:text="${item.name}">
+
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" th:field="*{idFacility}">
+                </td>
+            </tr>
+            <tr>
+                <td>Tên dịch vụ:</td>
+                <td>
+                    <input type="text" th:field="*{name}">
+                </td>
+            </tr>
+            <tr>
+                <td>Diện tích sử dụng:</td>
+                <td>
+                    <input type="number" th:field="*{area}">
+                </td>
+            </tr>
+            <tr>
+                <td>Giá:</td>
+                <td>
+                    <input type="number" th:field="*{cost}">
+                </td>
+            </tr>
+            <tr>
+                <td>Số người tối đa:</td>
+                <td>
+                    <input type="number" th:field="*{maxPeople}">
+                </td>
+            </tr>
+            <tr id="standard-room">
+                <td>Tiêu chuẩn phòng:</td>
+                <td>
+                    <input type="text" th:field="*{standardRoom}">
+                </td>
+            </tr>
+            <tr id="other">
+                <td>Tiện nghi khác:</td>
+                <td>
+                    <input type="text" th:field="*{descriptionOtherConvenience}">
+                </td>
+            </tr>
+            <tr id="pool">
+                <td>Diện tích hồ bơi:</td>
+                <td>
+                    <input type="text" th:field="*{poolArea}">
+                </td>
+            </tr>
+            <tr id="floors">
+                <td>Số tầng:</td>
+                <td>
+                    <input type="text" th:field="*{numberOfFloors}">
+                </td>
+            </tr>
+            <tr>
+                <td>Kiểu thuê:</td>
+                <td>
+                    <input type="text" th:field="*{rentType.name}">
+                </td>
+            </tr>
+            <tr id="free">
+                <td>Dịch vụ miễn phí:</td>
+                <td>
+                    <input type="text" th:field="*{facilityFree}">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Thêm mới</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<!--<script th:src="@{bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"></script>-->
+
+<script>
+    function onchangeFacility(value) {
+        if (value == 1) {
+            $("#standard-room").show();
+            $("#other").show();
+            $("#pool").show();
+            $("#floors").show();
+            $("#free").hide();
+        } else if (value == 2) {
+            $("#standard-room").show();
+            $("#other").show();
+            $("#pool").hide();
+            $("#floors").show();
+            $("#free").hide();
+        } else if (value == 3) {
+            $("#standard-room").hide();
+            $("#other").hide();
+            $("#pool").hide();
+            $("#floors").hide();
+            $("#free").show();
+        }
+    }
+</script>
+<script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"></script>
+
+</body>
+</html>

@@ -16,5 +16,5 @@ public interface ICustomerService {
 
     Customer findById(int id);
 
-    Page<Customer> findByName(String name);
+    Page<Customer> findByName(Pageable pageable,String name);
 }

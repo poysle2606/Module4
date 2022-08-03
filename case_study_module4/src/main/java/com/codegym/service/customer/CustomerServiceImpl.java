@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerServiceImpl implements ICustomerService{
+public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
     ICustomerRepository iCustomerRepository;
@@ -25,21 +25,24 @@ public class CustomerServiceImpl implements ICustomerService{
 
     @Override
     public void update(Customer customer) {
-
+//        iCustomerRepository.editCustomer(customer.getNameCustomer(),
+//                customer.getDayOfBirth(), customer.getGender(), customer.getIdCard(),
+//                customer.getNumberPhone(), customer.getEmail(), customer.getAddress(), customer.getIdCustomer());
+        iCustomerRepository.save(customer);
     }
 
     @Override
     public void delete(int id) {
-
+        iCustomerRepository.deleteById(id);
     }
 
     @Override
     public Customer findById(int id) {
-        return null;
+        return iCustomerRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Page<Customer> findByName(String name) {
-        return null;
+    public Page<Customer> findByName(Pageable pageable,String name) {
+        return iCustomerRepository.searchByName(pageable,"%" + name + "%");
     }
 }

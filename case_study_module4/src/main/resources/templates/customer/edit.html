@@ -1,10 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.css}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/css_home.css}">
+
 </head>
 <body>
-$END$
+<div id="header-furama">
+    <div>
+        <img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" height="70" width="55"
+             style="padding-top: 5px" alt="">
+    </div>
+
+    <div>
+        <img src="https://cdn-icons.flaticon.com/png/512/3059/premium/3059518.png?token=exp=1656917205~hmac=461c3388245578370ff666cc8fc285fb"
+             height="25" width="25"
+             style="margin: 25px 10px 25px 900px"/>
+        <a href="" class="link-myself">Đông Đú Đởn</a>
+    </div>
+
+</div>
+<nav class="navbar navbar-expand-lg navbar-primary bg-dark" style="position: sticky; top: 0">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active button-function" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="/employee">Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="/customer">Customer</a>
+                </li>
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle button-function" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Service
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/facility">Facility</a></li>
+                        <li><a class="dropdown-item" href="#">Villa</a></li>
+                        <li><a class="dropdown-item" href="#">Room</a></li>
+                        <li><a class="dropdown-item" href="#">House</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="#">Contract</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 500px">
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="/customer">Quay lại</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div style="margin-top: 20px">
+    <center><H1>CẬP NHẬP KHÁCH HÀNG</H1></center>
+</div>
+<div class="container">
+    <div class="col-lg-4 body_create"></div>
+    <div class="col-lg-4 body_create">
+        <form th:action="@{/customer/update}" th:object="${customer}" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <input type="hidden" id="id" th:field="*{idCustomer}">
+                    </td>
+                </tr>
+                <tr>
+                    <td for="type">Loại khách hàng:</td>
+                    <td>
+                        <select th:field="*{customerType.id}">
+                            <option th:each="item : ${customerType}" th:value="${item.id}"
+                                    th:text="${item.name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td for="name">Tên khách hàng:</td>
+                    <td>
+                        <input type="text" id="name" th:field="*{nameCustomer}">
+                    </td>
+                </tr>
+                <tr>
+                    <td for="day">Ngày sinh:</td>
+                    <td>
+                        <input type="date" id="day" th:field="*{dayOfBirth}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Giới tính:</td>
+                    <td>
+                        <select style="width: 50%" class="form-select" th:field="*{gender}">
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td for="idCard">CMND:</td>
+                    <td>
+                        <input type="number" id="idCard" th:field="*{idCard}">
+                    </td>
+                </tr>
+                <tr>
+                    <td for="number">Số điện thoại:</td>
+                    <td>
+                        <input type="number" id="number" th:field="*{numberPhone}">
+                    </td>
+                </tr>
+                <tr>
+                    <td for="email">Email:</td>
+                    <td>
+                        <input type="text" id="email" th:field="*{email}">
+                    </td>
+                </tr>
+                <tr>
+                    <td for="address">Địa chỉ</td>
+                    <td>
+                        <input type="text" id="address" th:field="*{address}">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Đồng ý</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="col-lg-4 body_create"></div>
+</div>
+<div id="footer-furama">
+    <center>Furama resort 2022 &copy;</center>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="../../bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>

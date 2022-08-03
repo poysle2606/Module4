@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active button-function" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active button-function" aria-current="page" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active button-function" href="/employee">Employee</a>
@@ -44,6 +44,7 @@
                         Service
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/facility">Facility</a></li>
                         <li><a class="dropdown-item" href="#">Villa</a></li>
                         <li><a class="dropdown-item" href="#">Room</a></li>
                         <li><a class="dropdown-item" href="#">House</a></li>
@@ -53,41 +54,45 @@
                     <a class="nav-link active button-function" href="#">Contract</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder=" Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 500px">
+                <li class="nav-item">
+                    <a class="nav-link active button-function" href="/customer">Quay lại</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
-<center><H1>CREATE NEW CUSTOMER</H1></center>
+<div style="margin-top: 20px">
+    <center><H1>THÊM MỚI KHÁCH HÀNG</H1></center>
+</div>
 <div class="container">
-    <div class="col-lg-4 body_create" ></div>
+    <div class="col-lg-4 body_create"></div>
     <div class="col-lg-4 body_create">
         <form th:action="@{/customer/save}" th:object="${customer}" method="post">
             <table>
                 <tr>
-                    <td for="type">Type of Customer</td>
+                    <td for="type">Loại khách:</td>
                     <td>
                         <select th:field="*{customerType.id}">
-                            <option th:each="item : ${customerType}" th:value="${item.id}" th:text="${item.name}"></option>
+                            <option th:each="item : ${customerType}" th:value="${item.id}"
+                                    th:text="${item.name}"></option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td for="name">Name of Customer</td>
+                    <td for="name">Tên khách hàng:</td>
                     <td>
                         <input type="text" id="name" th:field="*{nameCustomer}">
                     </td>
                 </tr>
                 <tr>
-                    <td for="day">Day of birth</td>
+                    <td for="day">Ngày sinh:</td>
                     <td>
                         <input type="date" id="day" th:field="*{dayOfBirth}">
                     </td>
                 </tr>
                 <tr>
-                    <td>Gender</td>
+                    <td>Giới tính:</td>
                     <td>
                         <select style="width: 50%" class="form-select" th:field="*{gender}">
                             <option value="1">Male</option>
@@ -96,32 +101,36 @@
                     </td>
                 </tr>
                 <tr>
-                    <td for="idCard">CMND</td>
+                    <td for="idCard">CMND:</td>
                     <td>
                         <input type="number" id="idCard" th:field="*{idCard}">
                     </td>
                 </tr>
                 <tr>
-                    <td for="number">Number Phone</td>
+                    <td for="number">Số điện thoại:</td>
                     <td>
                         <input type="number" id="number" th:field="*{numberPhone}">
                     </td>
                 </tr>
                 <tr>
-                    <td for="email">Email</td>
+                    <td for="email">Email:</td>
                     <td>
                         <input type="text" id="email" th:field="*{email}">
                     </td>
                 </tr>
                 <tr>
-                    <td for="address">Address</td>
+                    <td for="address">Địa chỉ:</td>
                     <td>
                         <input type="text" id="address" th:field="*{address}">
                     </td>
                 </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Đồng ý</button>
+                    </td>
+                </tr>
             </table>
-            <button type="submit">Create</button>
-            <button><a th:href="@{/customer}">Back</a></button>
         </form>
     </div>
     <div class="col-lg-4 body_create"></div>

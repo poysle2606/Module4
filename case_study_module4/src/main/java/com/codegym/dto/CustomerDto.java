@@ -2,7 +2,6 @@ package com.codegym.dto;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 public class CustomerDto {
     private int idCustomer;
@@ -13,21 +12,20 @@ public class CustomerDto {
     private String nameCustomer;
     private String dayOfBirth;
 
-    @NotEmpty(message = "Here is Empty!")
     private int gender;
 
     @NotEmpty(message = "Here is Empty!")
     private String idCard;
 
-    @NotEmpty
+    @NotEmpty(message = "Here is Empty!")
     @Pattern(regexp = "^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$", message = "Phone Number is correct")
     private String numberPhone;
 
-    @NotEmpty
+    @NotEmpty(message = "Here is Empty!")
     @Pattern(regexp = "^[\\w\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Wrong format")
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "Here is Empty!")
     private String address;
 
     public CustomerDto() {
